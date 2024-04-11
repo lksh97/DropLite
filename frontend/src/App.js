@@ -12,7 +12,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">My DropLite</Typography>
+          <Typography variant="h6">Your Private Drive</Typography>
         </Toolbar>
       </AppBar>
       <Container>
