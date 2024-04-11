@@ -28,25 +28,27 @@ function FilesList() {
 
   return (
     <List>
-      {files.map((file) => (
-        <ListItem
-          button
-          key={file.id}
-          onClick={() => window.open(endpoints.downloadUrl(file.id), "_blank")}
-        >
-          <ListItemIcon>
-            <Avatar>
-              <InsertDriveFileIcon />
-            </Avatar>
-          </ListItemIcon>
-          <ListItemText
-            primary={file.name}
-            secondary={
-              `Size: ${file.size} KB` /* Assuming size is part of the file metadata */
-            }
-          />
-        </ListItem>
-      ))}
+      {files.length > 0 ? (
+        files.map((file) => (
+          <ListItem
+            button
+            key={file.id}
+            onClick={() => window.open(endpoints.downloadUrl(file.id), "_blank")}
+          >
+            <ListItemIcon>
+              <Avatar>
+                <InsertDriveFileIcon />
+              </Avatar>
+            </ListItemIcon>
+            <ListItemText
+              primary={file.name}
+              secondary={
+                `Size: ${file.size} KB` /* Assuming size is part of the file metadata */
+              }
+            />
+          </ListItem>
+        ))
+      ) : null}
     </List>
   );
 }

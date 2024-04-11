@@ -6,7 +6,7 @@ export const messages = {
 }
 
 export const endpoints = {
-    uploadUrl: "http://localhost:8000/upload",
-    filesUrl: "http://localhost:8000/files",
-    downloadUrl: (fileId) => `http://localhost:8000/download/${fileId}`
+    uploadUrl: "http://localhost:8080/upload",
+    filesUrl: "http://localhost:8080/files",
+    downloadUrl: (fileId) => `http://localhost:8080/download/${fileId}`
 };
