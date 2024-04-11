@@ -1,0 +1,16 @@
+.buttons {
+  display: flex;
+  width: 40vw;
+  margin-top: 15px;
+}
+
+.upload-button {
+  position: absolute !important;
+  margin-top: 8px;
+  top: 8rem;
+}
+
+.file-name {
+  margin-left: 8px;
+  padding-top: 6px;
+}
