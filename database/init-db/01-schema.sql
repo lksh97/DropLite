@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS file_metadata (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    filename VARCHAR(255) NOT NULL,
+    filetype VARCHAR(50),
+    filesize BIGINT,
+    upload_data DATETIME DEFAULT CURRENT_TIMESTAMP
+);
