@@ -29,8 +29,8 @@ npm start
 ```
 This will start the React development server, typically on http://localhost:3000.
 
-#### Run with Docker
-To start the backend with Docker, make sure Docker is running and execute:
+#### Run database with Docker
+To start the our database with Docker, make sure Docker is running and execute:
 ```bash
 docker-compose up -d
 ```
