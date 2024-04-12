@@ -1,56 +1,47 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Avatar,
-} from "@mui/material";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
-import { messages, endpoints } from "../constants";
+import "./FilesList.css";
 
-function FilesList() {
+function FileList() {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    const fetchFiles = async () => {
-      try {
-        const response = await axios.get(endpoints.filesUrl);
+    axios
+      .get("http://localhost:8080/files")
+      .then((response) => {
         setFiles(response.data);
-      } catch (error) {
-        console.error(messages.fetchingError, error);
-      }
-    };
-
-    fetchFiles();
+      })
+      .catch((error) => {
+        console.error("Error fetching files:", error);
+      });
   }, []);
 
+  const handleDownload = (filename) => {
+    window.open(`http://localhost:8080/download/${filename}`);
+  };
+
   return (
-    <List>
+    <div>
+      <h1 className="uploaded-files">Uploaded Files</h1>
       {files.length > 0 ? (
-        files.map((file) => (
-          <ListItem
-            button
-            key={file.id}
-            onClick={() => window.open(endpoints.downloadUrl(file.id), "_blank")}
-          >
-            <ListItemIcon>
-              <Avatar>
-                <InsertDriveFileIcon />
-              </Avatar>
-            </ListItemIcon>
-            <ListItemText
-              primary={file.name}
-              secondary={
-                `Size: ${file.size} KB` /* Assuming size is part of the file metadata */
-              }
-            />
-          </ListItem>
-        ))
-      ) : null}
-    </List>
+        <ul>
+          {files.map((file) => (
+            <li key={file.id}>
+              {file.filename} - {file.filesize} bytes
+              <button
+                onClick={() => handleDownload(file.filename)}
+                className="download-button"
+              >
+                Download
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No files uploaded yet.</p>
+      )}
+    </div>
   );
 }
 
-export default FilesList;
+export default FileList;
